@@ -2,6 +2,7 @@
 # Project created by QtCreator 2009-05-03T09:18:11
 # -------------------------------------------------
 TARGET = qrtailab
+QT += widgets
 DESTDIR = ../
 TEMPLATE = app
 target.path = /usr/bin
@@ -9,7 +10,7 @@ INSTALLS += target
 include( ../qrtailab.config )
 CONFIG += QwtPlot \
     QwtWidgets
-contains(CONFIG, QRL_OpenGL ) { 
+contains(CONFIG, QRL_OpenGL ) {
     QT += opengl
     DEFINES += _use_opengl_
 }

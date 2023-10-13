@@ -70,7 +70,7 @@ public:
     int getIsTargetRunning(){return targetthread->getIsTargetRunning();}
     int getEndApp(){return targetthread->getEndApp();}
     int getVerbose(){return targetthread->getVerbose();}
-    int setVerbose(int v){ targetthread->setVerbose(v);}
+    void setVerbose(int v){ targetthread->setVerbose(v);}
     void setHardRealTime(int hrScope,int hrLog,int hrAlog){targetthread->setHardRealTime( hrScope, hrLog, hrAlog);}
     const char* getTargetName(){return targetthread->getTargetName();}
 

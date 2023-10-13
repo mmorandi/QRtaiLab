@@ -6,6 +6,8 @@
 # modify it under the terms of the LGPL
 ##############################################
 
+QT += widgets
+
 include( qrtailab.config )
 
 TEMPLATE = subdirs

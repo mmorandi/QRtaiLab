@@ -242,7 +242,7 @@ int main(int argc, char *argv[])
      }
 
     if (!parameterfile.isEmpty() && !QFile::exists(parameterfile)) {
-             std::cout <<"Parameterfile "<< parameterfile.toAscii().data()<< " does not exists! \n" ;
+             std::cout <<"Parameterfile "<< parameterfile.toUtf8().data()<< " does not exists! \n" ;
             exit(-1);
     }
 
