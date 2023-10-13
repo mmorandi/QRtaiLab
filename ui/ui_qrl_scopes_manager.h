@@ -231,7 +231,7 @@ public:
         dividerCounter->setStepButton2(10);
         dividerCounter->setStepButton3(100);
         dividerCounter->setValue(1.000000000000000);
-        dividerCounter->setEditable(true);
+        dividerCounter->setReadOnly(false);
 
         gridLayout_4->addWidget(dividerCounter, 0, 2, 1, 1);
 
@@ -251,7 +251,7 @@ public:
         dataCounter->setStepButton2(1000);
         dataCounter->setStepButton3(5000);
         dataCounter->setValue(100.000000000000000);
-        dataCounter->setEditable(false);
+        dataCounter->setReadOnly(true);
 
         gridLayout_4->addWidget(dataCounter, 1, 1, 1, 2);
 
