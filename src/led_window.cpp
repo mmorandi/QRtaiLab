@@ -25,6 +25,9 @@
    file for the classes QRL_LedWindow QLed
 */
 
+#include <QDialog>
+#include <QLabel>
+#include <QVBoxLayout>
 #include "led_window.h"
 
 

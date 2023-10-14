@@ -58,13 +58,13 @@ class QPL_ScopeTrace
 public:
   enum labelTypes{lt_trace,lt_unit,lt_average,lt_min,lt_max,lt_pp,lt_rms};
   QPL_ScopeTrace(QwtPlot *parent, unsigned int maxdatapoints, int j);
-~QPL_ScopeTrace();
-    void setFileVersion(qint32 v){fileVersion=v;}
-    void refresh();
+  ~QPL_ScopeTrace();
+  void setFileVersion(qint32 v){fileVersion=v;}
+  void refresh();
   void changeNDataSoll(int ds, double dt);
-void setLabelsXValue(double x);
-    void resetTime(){time=0;}	
-   void setTime(int t){time=t;}
+  void setLabelsXValue(double x);
+  void resetTime(){time=0;}	
+  void setTime(int t){time=t;}
   int getTime() {return time;}
 //   double* getPointerd_y(){return d_y;}
    void setGridColor(const QColor& c){gridColor=c;}
@@ -86,10 +86,10 @@ void setLabelsXValue(double x);
    bool isLabelVisible(labelTypes lt);
    void setLabelVisible(labelTypes lt, bool setvisible);
    bool getZeroAxis(){return zeroAxis.isVisible();}
-  void setLabelCounter(int counter){labelCounter=counter;}
-  int getLabelCounter(){return labelCounter;}
+   void setLabelCounter(int counter){labelCounter=counter;}
+   int getLabelCounter(){return labelCounter;}
    //PlottingScopeDataThread* getThread(){return Plotting_Scope_Data_Thread;}
-void setZeroAxis();
+   void setZeroAxis();
    void setName(const QString &text);
    QString getName(){return traceName;}
    void setValue(int index, double v);
@@ -98,18 +98,18 @@ void setZeroAxis();
 
    //saving is missing
        void setLineStyle(QwtPlotCurve::CurveStyle s){cData->setStyle(s); oldStyle=s;}
-        QwtPlotCurve::CurveStyle    getLineStyle() {return cData->style();}
-       void setSymbolPenColor(const QColor& c){sym.setPen(QColor(c));  cData->setSymbol(sym); }
-       QColor getSymbolPenColor(){return sym.pen().color();}
-       void setSymbolBrushColor(const QColor& c){sym.setBrush(QColor(c));  cData->setSymbol(sym); }
-       QColor getSymbolBrushColor(){return sym.brush().color();}
-       void setSymbolStyle(QwtSymbol::Style s){sym.setStyle(s); cData->setSymbol(sym);oldSymbol=s;}
-       QwtSymbol::Style getSymbolStyle(){return sym.style();}
-       void setSymbolSize(int s){sym.setSize(s);  cData->setSymbol(sym); }
-       int getSymbolSize(){ return sym.size().width();}
+       QwtPlotCurve::CurveStyle    getLineStyle() {return cData->style();}
+       void setSymbolPenColor(const QColor& c){sym->setPen(QColor(c));  cData->setSymbol(sym); }
+       QColor getSymbolPenColor(){return sym->pen().color();}
+       void setSymbolBrushColor(const QColor& c){sym->setBrush(QColor(c));  cData->setSymbol(sym); }
+       QColor getSymbolBrushColor(){return sym->brush().color();}
+       void setSymbolStyle(QwtSymbol::Style s){sym->setStyle(s); cData->setSymbol(sym);oldSymbol=s;}
+       QwtSymbol::Style getSymbolStyle(){return sym->style();}
+       void setSymbolSize(int s){sym->setSize(s);  cData->setSymbol(sym); }
+       int getSymbolSize(){ return sym->size().width();}
 
-       void setSymbol(QwtSymbol s){sym=s;cData->setSymbol(sym);  }
-       QwtSymbol getSymbol(){return cData->symbol();}
+       void setSymbol(QwtSymbol* s){sym=s;cData->setSymbol(sym);  }
+       const QwtSymbol* getSymbol(){return cData->symbol();}
 
 private:
         qint32 fileVersion;
@@ -122,7 +122,7 @@ private:
 	double dy;
 	int lineWidth;
 	QBrush brush;
-        QwtSymbol sym;
+        QwtSymbol* sym;
   	QwtPlotMarker zeroAxis;
 	double average;
 	double min,max;

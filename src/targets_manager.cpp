@@ -116,21 +116,21 @@ Preferences_T QRL_TargetsManager::getPreferences()
 {
 
 	QByteArray a;
-	a=ipLineEdit->text().toAscii();
+	a=ipLineEdit->text().toUtf8();
 	Preferences.Target_IP=qstrdup(a.data());
-	a=taskLineEdit->text().toAscii() ;
+	a=taskLineEdit->text().toUtf8() ;
 	Preferences.Target_Interface_Task_Name=qstrdup(a.data());
-	a=scopeLineEdit->text().toAscii() ;
+	a=scopeLineEdit->text().toUtf8() ;
 	Preferences.Target_Scope_Mbx_ID=qstrdup(a.data());
-	a=logLineEdit->text().toAscii() ;
+	a=logLineEdit->text().toUtf8() ;
 	Preferences.Target_Log_Mbx_ID=qstrdup(a.data());
-	a=alogLineEdit->text().toAscii() ;
+	a=alogLineEdit->text().toUtf8() ;
 	Preferences.Target_ALog_Mbx_ID=qstrdup(a.data());
-	a=ledLineEdit->text().toAscii();
+	a=ledLineEdit->text().toUtf8();
 	Preferences.Target_Led_Mbx_ID=qstrdup(a.data());
-	a=meterLineEdit->text().toAscii() ;
+	a=meterLineEdit->text().toUtf8() ;
 	Preferences.Target_Meter_Mbx_ID=qstrdup(a.data());
-	a=synchLineEdit->text().toAscii() ;
+	a=synchLineEdit->text().toUtf8() ;
 	Preferences.Target_Synch_Mbx_ID=qstrdup(a.data());
 
 
@@ -155,17 +155,17 @@ if (connected){
 	targetTableWidget->setColumnCount(4);
 	QTableWidgetItem *newItem;
 	newItem = new QTableWidgetItem(tr("Number of tunable parameters"));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,0,newItem);
 	newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getParameterNumber()));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,1,newItem);
 	newItem = new QTableWidgetItem(tr("Number of scopes"));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	j++;
 	targetTableWidget->setItem(j,0,newItem);
 	newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getScopeNumber()));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,1,newItem);
 	if (qTargetInterface->getScopeNumber()>0){
 		jend=jend+qTargetInterface->getScopeNumber()*3;
@@ -173,24 +173,24 @@ if (connected){
 		for (int k=0;k<qTargetInterface->getScopeNumber();k++){
 			j++;
 			newItem = new QTableWidgetItem(tr("Scope"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,1,newItem);
 			newItem = new QTableWidgetItem(qTargetInterface->getScopeName(k));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			j++;
 			newItem = new QTableWidgetItem(tr("Number of traces"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getNumberOfTraces(k)));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,3,newItem);
 			j++;
 			newItem = new QTableWidgetItem(tr("Sampling time"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getScopes()[k]->getDt()));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,3,newItem);
 
 		}
@@ -198,10 +198,10 @@ if (connected){
 	}
 	j++;
 	newItem = new QTableWidgetItem(tr("Number of logs"));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,0,newItem);
 	newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getLogNumber()));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,1,newItem);
 	if (qTargetInterface->getLogNumber()>0){
 		jend=jend+qTargetInterface->getLogNumber()*2;
@@ -209,17 +209,17 @@ if (connected){
 		for (int k=0;k<qTargetInterface->getLogNumber();k++){
 			j++;
 			newItem = new QTableWidgetItem(tr("Log"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,1,newItem);
 			newItem = new QTableWidgetItem(qTargetInterface->getLogName(k));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			j++;
 			newItem = new QTableWidgetItem(tr("Sampling time"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getLogs()[k]->getDt()));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,3,newItem);
 
 		}
@@ -227,10 +227,10 @@ if (connected){
 	}
 	j++;
 	newItem = new QTableWidgetItem(tr("Number of automatic logs"));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,0,newItem);
 	newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getALogNumber()));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,1,newItem);
 	if (qTargetInterface->getALogNumber()>0){
 		jend=jend+qTargetInterface->getALogNumber()*2;
@@ -238,17 +238,17 @@ if (connected){
 		for (int k=0;k<qTargetInterface->getALogNumber();k++){
 			j++;
 			newItem = new QTableWidgetItem(tr("Log"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,1,newItem);
 			newItem = new QTableWidgetItem(qTargetInterface->getALogName(k));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			j++;
 			newItem = new QTableWidgetItem(tr("Sampling time"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getALogs()[k]->getDt()));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,3,newItem);
 
 		}
@@ -256,10 +256,10 @@ if (connected){
 	}
 	j++;
 	newItem = new QTableWidgetItem(tr("Number of leds"));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,0,newItem);
 	newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getLedNumber()));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,1,newItem);
 	if (qTargetInterface->getLedNumber()>0){
 		jend=jend+qTargetInterface->getLedNumber()*3;
@@ -267,24 +267,24 @@ if (connected){
 		for (int k=0;k<qTargetInterface->getLedNumber();k++){
 			j++;
 			newItem = new QTableWidgetItem(tr("Led"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,1,newItem);
 			newItem = new QTableWidgetItem(qTargetInterface->getLedName(k));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			j++;
 			newItem = new QTableWidgetItem(tr("Number of leds"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getNumberOfLeds(k)));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,3,newItem);
 			j++;
 			newItem = new QTableWidgetItem(tr("Sampling time"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getLed(k)->getDt()));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,3,newItem);
 
 		}
@@ -292,10 +292,10 @@ if (connected){
 	}
 	j++;
 	newItem = new QTableWidgetItem(tr("Number of meters"));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,0,newItem);
 	newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getMeterNumber()));
-	newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+	newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 	targetTableWidget->setItem(j,1,newItem);
 	if (qTargetInterface->getMeterNumber()>0){
 		jend=jend+qTargetInterface->getMeterNumber()*2;
@@ -303,17 +303,17 @@ if (connected){
 		for (int k=0;k<qTargetInterface->getMeterNumber();k++){
 			j++;
 			newItem = new QTableWidgetItem(tr("Meter"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,1,newItem);
 			newItem = new QTableWidgetItem(qTargetInterface->getMeterName(k));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			j++;
 			newItem = new QTableWidgetItem(tr("Sampling time"));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,2,newItem);
 			newItem = new QTableWidgetItem(tr("%1").arg(qTargetInterface->getMeter(k)->getDt()));
-			newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+			newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 			targetTableWidget->setItem(j,3,newItem);
 
 		}
@@ -381,8 +381,8 @@ QDataStream& operator<<(QDataStream &out, const QRL_TargetsManager &d){
     hrtALog=1;
   else
     hrtALog=0;
-    out<<hrtScope<<hrtLog<<hrtALog;
-	return out;
+  out<<hrtScope<<hrtLog<<hrtALog;
+  return out;
 }
 
 

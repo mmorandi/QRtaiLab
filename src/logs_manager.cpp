@@ -25,6 +25,8 @@
    file for the classe QRL_LogsManager
 */
 
+#include <QFileDialog>
+#include <QMessageBox>
 #include "logs_manager.h"
 
 

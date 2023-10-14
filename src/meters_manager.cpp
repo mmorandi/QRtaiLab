@@ -24,6 +24,8 @@
    file for the classes GetMeterDataThread and  QRL_MetersManager
 */
 
+#include <QColorDialog>
+#include <QFontDialog>
 #include "meters_manager.h"
 
 extern unsigned long qrl::get_an_id(const char *root);

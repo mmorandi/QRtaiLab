@@ -23,6 +23,9 @@
 #define LOG_MATRIXVIEW_H
 
 #include <QtGui>
+#include <QAbstractItemDelegate>
+#include <QDialog>
+#include <QVBoxLayout>
 
 #include "qtplot_global.h"
 

@@ -23,6 +23,8 @@
  describtion:
    file for the classes QRL_ParametersManager
 */
+#include <QMessageBox>
+#include <QFileDialog>
 #include "parameters_manager.h"
 #include <iostream>
 
@@ -95,7 +97,7 @@ void QRL_ParametersManager::showAllBlocks( bool  state){
 	if(state==false){
 	  //QString str=(paramLineEdit->text()).remove(QChar(' '), Qt::CaseInsensitive);
 	  QString str=(paramLineEdit->text());
-	  QStringList strList = str.split(" ", QString::SkipEmptyParts);
+	  QStringList strList = str.split(" ", Qt::SkipEmptyParts);
 	  QString tmp;
 	    if (hideRadioButton->isChecked()){
 	      for (int i=0; i<Num_Tunable_Blocks; ++i)
@@ -261,7 +263,7 @@ void QRL_ParametersManager::showTunableParameter(QListWidgetItem * item )
 	int table_row=0;
 	for (int j = 0; j <  jend; j++) {
 		newItem = new QTableWidgetItem(Parameters->getParameterName(i,j));
-		newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+		newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 		parameterTableWidget->setItem(table_row,0,newItem);
 
 		unsigned int ncols = Parameters->getParameterCols(i,j);
@@ -273,7 +275,7 @@ void QRL_ParametersManager::showTunableParameter(QListWidgetItem * item )
 		for (unsigned int nr = 0; nr < nrows; nr++) {
 			if(nr>0){
 				newItem = new QTableWidgetItem(tr(" "));
-				newItem->setFlags(!Qt::ItemIsEditable|!Qt::ItemIsSelectable);
+				newItem->setFlags(~(Qt::ItemIsEditable|Qt::ItemIsSelectable));
 				parameterTableWidget->setItem(table_row,0,newItem);
 			}
 			for (unsigned int nc = 0; nc < ncols; nc++) {
@@ -399,11 +401,11 @@ QString filename = QFileDialog::getSaveFileName(this,tr("Save Parameter"), NULL,
 
 
              // Write a header with a "magic number" and a version
- out << (quint32)DATA_STREAM_MAGIC_NUMBER<<endl;
- out << (qint32)DATA_STREAM_VERSION<<endl;
- out << "Target: " << Parameters->getTargetName()<<endl;
+ out << (quint32)DATA_STREAM_MAGIC_NUMBER<<"\n";
+ out << (qint32)DATA_STREAM_VERSION<<"\n";
+ out << "Target: " << Parameters->getTargetName()<<"\n";
  out << "Date: " << QDate::currentDate().toString("dd.MM.yyyy");
- out << " "<<QTime::currentTime().toString("hh:mm")<<endl;
+ out << " "<<QTime::currentTime().toString("hh:mm")<<"\n";
  //out << "Number of Blocks: "<< Parameters->getBlockNumber()<<endl;
  for (int blk=0;blk<Parameters->getBlockNumber();blk++){
   if (Parameters->isBlockVisible(blk)) {
@@ -411,7 +413,7 @@ QString filename = QFileDialog::getSaveFileName(this,tr("Save Parameter"), NULL,
 //    out << "[ "<<blk<<"] ";
 //  else
      out << "["<<blk<<"] ";
-    out<<Parameters->getBlockName(blk) << endl;
+    out<<Parameters->getBlockName(blk) << "\n";
     // out << "Number of Parameters: "<< Parameters->getNumberOfParameters(blk)<<endl;
     for (int prm=0;prm<Parameters->getNumberOfParameters(blk);prm++){
 //        if (prm<10)
@@ -420,15 +422,15 @@ QString filename = QFileDialog::getSaveFileName(this,tr("Save Parameter"), NULL,
      out << "  ["<<prm<<"] ";
       out << Parameters->getParameterName(blk,prm);
         if (Parameters->getParameterRows(blk,prm)==1 && Parameters->getParameterCols(blk,prm)==1){
-          out << " = " << Parameters->getParameterValue(blk,prm,0,0) << endl;
+          out << " = " << Parameters->getParameterValue(blk,prm,0,0) << "\n";
 
         } else {
-	out << endl;
+	out << "\n";
 	for (int nr=0;nr<Parameters->getParameterRows(blk,prm);nr++){
 	   for (int nc=0;nc<Parameters->getParameterCols(blk,prm);nc++){
                 out << "  ("<<nr<<","<<nc<<")  = "<<Parameters->getParameterValue(blk,prm,nr,nc)<< " ";
 	   }
-	  out <<endl;
+	  out <<"\n";
         }
       }
     }

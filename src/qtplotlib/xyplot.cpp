@@ -26,10 +26,10 @@
 class Zoomer: public QwtPlotZoomer
 {
 public:
-    Zoomer(int xAxis, int yAxis, QwtPlotCanvas *canvas):
+    Zoomer(int xAxis, int yAxis, QWidget *canvas):
         QwtPlotZoomer(xAxis, yAxis, canvas)
     {
-        setSelectionFlags(QwtPicker::DragSelection | QwtPicker::CornerToCorner);
+        //setSelectionFlags(QwtPicker::DragSelection | QwtPicker::CornerToCorner);
         setTrackerMode(QwtPicker::AlwaysOff);
         setRubberBand(QwtPicker::NoRubberBand);
 
@@ -82,7 +82,7 @@ QPL_XYPlot::QPL_XYPlot(QWidget *parent)
 
         bgColor=QColor(240,240,240);
     picker = new QwtPlotPicker(QwtPlot::xBottom, QwtPlot::yLeft,
-        QwtPicker::PointSelection | QwtPicker::DragSelection,
+        //QwtPicker::PointSelection | QwtPicker::DragSelection,
         QwtPlotPicker::CrossRubberBand, QwtPicker::AlwaysOn,
         this->canvas());
     picker->setRubberBandPen(QColor(gridColor));
@@ -115,7 +115,7 @@ QPL_XYPlot::QPL_XYPlot(QWidget *parent)
          this->canvas());
 
     panner = new QwtPlotPanner(this->canvas());
-    panner->setMouseButton(Qt::MidButton);
+    panner->setMouseButton(Qt::MouseButton::MiddleButton);
     panner->setEnabled(false);
 
     zoomer[0]->setEnabled(false);
@@ -141,7 +141,7 @@ QPL_XYPlot::QPL_XYPlot(QWidget *parent)
 
        grid = new QwtPlotGrid;
     //grid->enableXMin(true);
-    grid->setMajPen(QPen(gridColor, 0, Qt::DotLine));
+    grid->setMajorPen(QPen(gridColor, 0, Qt::DotLine));
     grid->attach(this);
 
            //  qwtPlot->setTitle(tr(Scope->name));

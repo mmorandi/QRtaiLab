@@ -24,6 +24,8 @@
 
 #include "qtplot_global.h"
 #include <QtGui>
+#include <QTableView>
+#include <QApplication>
 #include "matrix_view.h"
 
 class  QPL_MatrixPlot : public QTableView

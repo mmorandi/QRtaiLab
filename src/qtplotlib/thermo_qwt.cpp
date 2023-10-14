@@ -31,10 +31,12 @@ QPL_ThermoQwt::QPL_ThermoQwt(QWidget *parent)
         Min=-1.;
         Max=1.;
 
-    this->setRange(Min,Max);
+    //this->setRange(Min,Max);
+    this->setLowerBound(Min);
+    this->setUpperBound(Max);
   //  Thermo->setScale(Min,Max);
     setPipeWidth(14);
-    this->setAutoScale();
+    //this->setAutoScale();
      this->setScaleMaxMajor(5);
     this->setScaleMaxMinor(10);
      pipeDistance=this->minimumSizeHint().width()-this->pipeWidth()-this->borderWidth()*2;
@@ -71,7 +73,7 @@ QPL_ThermoQwt::~QPL_ThermoQwt(){
 void QPL_ThermoQwt::setMax(double max)
 {
         Max=max;
-        this->setMaxValue(Max);
+        this->setUpperBound(Max);
         pipeDistance=this->minimumSizeHint().width()-this->pipeWidth()-this->borderWidth()*2;
         setPipeWith(pipeWidth());
         //Dial->setRange(Min,Max);
@@ -81,7 +83,7 @@ void QPL_ThermoQwt::setMax(double max)
 void QPL_ThermoQwt::setMin(double min)
 {
         Min=min;
-        this->setMinValue(Min);
+        this->setLowerBound(Min);
         pipeDistance=this->minimumSizeHint().width()-this->pipeWidth()-this->borderWidth()*2;
         setPipeWith(pipeWidth());
        // Dial->setRange(Min,Max);
@@ -236,9 +238,11 @@ void QPL_ThermoQwt::setGradientEnabled(bool b)
 void  QPL_ThermoQwt::setThermoDirection(Qt::Orientation o)
 {
         if(o==Qt::Vertical)
-                this->setOrientation(o, QwtThermo::LeftScale);
+                //this->setOrientation(o, QwtThermo::Alignment::LeftScale);
+		this->setOrientation(o);
         else
-                this->setOrientation(o, QwtThermo::BottomScale);
+                //this->setOrientation(o, QwtThermo::Alignment::BottomScale);
+                this->setOrientation(o);
 }
 
 

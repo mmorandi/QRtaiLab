@@ -29,6 +29,7 @@
 #ifndef _METER_WINDOW_H
 #define _METER_WINDOW_H 1
 #include <QtGui>
+#include <QDialog>
 #include <qwt_thermo.h>
 #include <qwt_scale_draw.h>
 #include <qwt_scale_engine.h>

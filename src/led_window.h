@@ -29,6 +29,8 @@
 #define _LED_WINDOW_H 1
 
 #include <QtGui>
+#include <QLabel>
+#include <QDialog>
 #include "led_data.h"
 #include "led.h"
 

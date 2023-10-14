@@ -30,10 +30,10 @@
 class Zoomer: public QwtPlotZoomer
 {
 public:
-    Zoomer(int xAxis, int yAxis, QwtPlotCanvas *canvas):
+    Zoomer(int xAxis, int yAxis, QWidget *canvas):
         QwtPlotZoomer(xAxis, yAxis, canvas)
     {
-        setSelectionFlags(QwtPicker::DragSelection | QwtPicker::CornerToCorner);
+        //setSelectionFlags(QwtPicker::DragSelection | QwtPicker::CornerToCorner);
         setTrackerMode(QwtPicker::AlwaysOff);
         setRubberBand(QwtPicker::NoRubberBand);
 
@@ -104,7 +104,7 @@ QPL_Scope::QPL_Scope(QWidget *parent)
 
         bgColor=QColor(240,240,240);
     picker = new QwtPlotPicker(QwtPlot::xBottom, QwtPlot::yLeft,
-        QwtPicker::PointSelection | QwtPicker::DragSelection,
+        //QwtPicker::PointSelection | QwtPicker::DragSelection,
         QwtPlotPicker::CrossRubberBand, QwtPicker::AlwaysOn,
         this->canvas());
     picker->setRubberBandPen(QColor(gridColor));
@@ -127,7 +127,7 @@ QPL_Scope::QPL_Scope(QWidget *parent)
     vertLine->setLinePen(QPen(QColor(gridColor),1,Qt::DotLine));
     vertLine->attach(this);
 
-    zoomer[0] = new Zoomer( QwtPlot::xBottom, QwtPlot::yLeft,this->canvas());
+    zoomer[0] = new Zoomer( QwtPlot::xBottom, QwtPlot::yLeft, this->canvas());
     zoomer[0]->setRubberBand(QwtPicker::RectRubberBand);
     zoomer[0]->setRubberBandPen(QColor(gridColor));
     zoomer[0]->setTrackerMode(QwtPicker::ActiveOnly);
@@ -137,7 +137,7 @@ QPL_Scope::QPL_Scope(QWidget *parent)
          this->canvas());
 
     panner = new QwtPlotPanner(this->canvas());
-    panner->setMouseButton(Qt::MidButton);
+    panner->setMouseButton(Qt::MouseButton::MiddleButton);
     panner->setEnabled(false);
 
     zoomer[0]->setEnabled(false);
@@ -164,7 +164,7 @@ QPL_Scope::QPL_Scope(QWidget *parent)
    
        grid = new QwtPlotGrid;
     //grid->enableXMin(true);
-    grid->setMajPen(QPen(gridColor, 0, Qt::DotLine));
+    grid->setMajorPen(QPen(gridColor, 0, Qt::DotLine));
     grid->attach(this);
     
            //  qwtPlot->setTitle(tr(Scope->name));
@@ -630,7 +630,7 @@ NDistance=(int)(dt*(1./Scope->getDt()));  //doesnt work
 
 void QPL_Scope::setGridColor(QColor gridcolor){
         gridColor=gridcolor;
-        grid->setMajPen(QPen(gridColor, 0, Qt::DotLine));
+        grid->setMajorPen(QPen(gridColor, 0, Qt::DotLine));
         picker->setRubberBandPen(QColor(gridColor));
         picker->setTrackerPen(QColor(gridColor));
         QwtText bt(bottomText->label());

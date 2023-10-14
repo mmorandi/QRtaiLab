@@ -121,7 +121,8 @@ QRL_ScopesManager::QRL_ScopesManager(QWidget *parent, int numScopes, QPL_ScopeDa
 	//	connect(&Get_Scope_Data_Thread[i],SIGNAL(value(int,float)),ScopeWindows[i],SLOT(setValue(int,float)));
 	//}
 	offsetWheel->setMass(0.5);
-	offsetWheel->setRange(-1e6, 1e6, 0.25);
+	offsetWheel->setRange(-1e6, 1e6);
+	//offsetWheel->setRange(-1e6, 1e6, 0.25);
 	offsetWheel->setTotalAngle(360.0*2e6);
 	offsetWheel->setFixedHeight(30);
 	dxComboBox->setCompleter(0);

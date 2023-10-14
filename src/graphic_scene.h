@@ -30,6 +30,8 @@
 #include <QFutureWatcher>
 #endif
 
+#include <QGraphicsScene>
+
 class Model;
 class QRL_OpenGLScene : public QGraphicsScene
 {

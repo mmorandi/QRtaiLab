@@ -237,12 +237,12 @@ int main(int argc, char *argv[])
      }
 
      if (!profilefile.isEmpty() && !QFile::exists(profilefile)){
-              std::cout <<"Profile " << profilefile.toAscii().data() << " does not exists! \n" ;
+              std::cout <<"Profile " << profilefile.data() << " does not exists! \n" ;
             exit(-1);
      }
 
     if (!parameterfile.isEmpty() && !QFile::exists(parameterfile)) {
-             std::cout <<"Parameterfile "<< parameterfile.toUtf8().data()<< " does not exists! \n" ;
+             std::cout <<"Parameterfile "<< parameterfile.data()<< " does not exists! \n" ;
             exit(-1);
     }
 

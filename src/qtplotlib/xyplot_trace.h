@@ -79,17 +79,17 @@ public:
    //saving is missing
        void setLineStyle(QwtPlotCurve::CurveStyle s){cData->setStyle(s); oldStyle=s;}
         QwtPlotCurve::CurveStyle    getLineStyle() {return cData->style();}
-       void setSymbolPenColor(const QColor& c){sym.setPen(QColor(c));  cData->setSymbol(sym); }
-       QColor getSymbolPenColor(){return sym.pen().color();}
-       void setSymbolBrushColor(const QColor& c){sym.setBrush(QColor(c));  cData->setSymbol(sym); }
-       QColor getSymbolBrushColor(){return sym.brush().color();}
-       void setSymbolStyle(QwtSymbol::Style s){sym.setStyle(s); cData->setSymbol(sym);oldSymbol=s;}
-       QwtSymbol::Style getSymbolStyle(){return sym.style();}
-       void setSymbolSize(int s){sym.setSize(s);  cData->setSymbol(sym); }
-       int getSymbolSize(){ return sym.size().width();}
+       void setSymbolPenColor(const QColor& c){sym->setPen(QColor(c));  cData->setSymbol(sym); }
+       QColor getSymbolPenColor(){return sym->pen().color();}
+       void setSymbolBrushColor(const QColor& c){sym->setBrush(QColor(c));  cData->setSymbol(sym); }
+       QColor getSymbolBrushColor(){return sym->brush().color();}
+       void setSymbolStyle(QwtSymbol::Style s){sym->setStyle(s); cData->setSymbol(sym);oldSymbol=s;}
+       QwtSymbol::Style getSymbolStyle(){return sym->style();}
+       void setSymbolSize(int s){sym->setSize(s);  cData->setSymbol(sym); }
+       int getSymbolSize(){ return sym->size().width();}
 
-       void setSymbol(QwtSymbol s){sym=s;cData->setSymbol(sym);  }
-       QwtSymbol getSymbol(){return cData->symbol();}
+       void setSymbol(QwtSymbol* s){sym=s;cData->setSymbol(sym);  }
+       const QwtSymbol* getSymbol(){return cData->symbol();}
 
 private:
         qint32 fileVersion;
@@ -102,7 +102,7 @@ private:
         double dy;
         int lineWidth;
         QBrush brush;
-        QwtSymbol sym;
+        QwtSymbol* sym;
         QString traceName;
         bool visible;
         unsigned int  MaxDataPoints,NDataSoll,xmax;

@@ -314,7 +314,8 @@ if ( isLabelVisible(lt_rms)){
         d_x[i] =dt * i;     // time axis
 	    d_y[i] = offset;
     }
-  	cData->setRawData(d_x, d_y, NDataSoll);
+  	cData->setRawSamples(d_x, d_y, NDataSoll);
+  	//cData->setData(d_x, d_y, NDataSoll);
 }
 
 
@@ -324,7 +325,7 @@ void QPL_ScopeTrace::show(bool v){
 	visible=v;
 	if (!visible) {
 		cData->setStyle(QwtPlotCurve::NoCurve);
-                sym.setStyle(QwtSymbol::NoSymbol); cData->setSymbol(sym);
+                sym->setStyle(QwtSymbol::NoSymbol); cData->setSymbol(sym);
 
 	}else{	
                 cData->setStyle(oldStyle);
@@ -661,10 +662,10 @@ QDataStream& operator<<(QDataStream &out, const QPL_ScopeTrace *d){
 		out << d->visible;
 
                 out <<d->cData->style();
-                out <<d->cData->symbol().pen().color();
-                out <<d->cData->symbol().brush().color();
-                out <<d->cData->symbol().style();
-                out <<d->cData->symbol().size().width();
+                out <<d->cData->symbol()->pen().color();
+                out <<d->cData->symbol()->brush().color();
+                out <<d->cData->symbol()->style();
+                out <<d->cData->symbol()->size().width();
 
 	return out;
 }

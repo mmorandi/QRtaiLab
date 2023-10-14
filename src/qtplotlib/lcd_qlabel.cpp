@@ -82,7 +82,7 @@ QDataStream& operator>>(QDataStream &in, QPL_LcdQLabel(&d)){
 
 
           in >> a; d.setLcdPrecision(a);
-          in >> ch; d.setLcdFormat(ch.toAscii());
+          in >> ch; d.setLcdFormat(ch.toLatin1());
 
 
         return in;

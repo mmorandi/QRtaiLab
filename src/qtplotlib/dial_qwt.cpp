@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include "dial_qwt.h"
+#include <qwt_round_scale_draw.h>
 
 QPL_DialQwt::QPL_DialQwt(QWidget *parent)
         :QwtDial(parent)
@@ -34,22 +35,24 @@ QPL_DialQwt::QPL_DialQwt(QWidget *parent)
         //Dial->setObjectName(QString::fromUtf8("Dial"));
         //Dial->setGeometry(QRect(50, 20, 52, 50));
         this->setScaleArc(40.,320.);
-        this->setRange(Min,Max);
+        //this->setRange(Min,Max);
+        this->setLowerBound(Min);
+        this->setUpperBound(Max);
         needle = new QwtDialSimpleNeedle(
         QwtDialSimpleNeedle::Arrow, true, Qt::red,
-        QColor(Qt::gray).light(130));
+        QColor(Qt::gray).lighter(130));
         this->setNeedle(needle);
         this->scaleDraw()->setSpacing(2);
         //Dial->scaleDraw()->setRadius(5);
         //printf("radius %d\n",Dial->scaleDraw()->radius());
         this->setWrapping(false);
         this->setReadOnly(true);
-        this->setScaleTicks(0, 4, 8);
+        //this->setScaleTicks(0, 4, 8);
         this->setScale(5,10);
         //Dial->setScale(1, 2, 0.25);
-        this->setScaleOptions(QwtDial::ScaleTicks | QwtDial::ScaleLabel);
+        //this->setScaleOptions(QwtDial::ScaleTicks | QwtDial::ScaleLabel);
         this->setFrameShadow(QwtDial::Sunken);
-        this->scaleDraw()->setPenWidth(2);
+        this->scaleDraw()->setPenWidthF(2);
         //Dial->setLineWidth(1);
         this->setVisible(false);
     }
@@ -62,14 +65,18 @@ QPL_DialQwt::~QPL_DialQwt()
 void QPL_DialQwt::setMax(double max)
 {
         Max=max;
-        this->setRange(Min,Max);
+        //this->setRange(Min,Max);
+        this->setLowerBound(Min);
+        this->setUpperBound(Max);
 }
 
 
 void QPL_DialQwt::setMin(double min)
 {
         Min=min;
-       this->setRange(Min,Max);
+        //this->setRange(Min,Max);
+        this->setLowerBound(Min);
+        this->setUpperBound(Max);
 }
 
    void QPL_DialQwt::setNeedleColor(const QColor& c){

@@ -25,6 +25,8 @@
    file for the classes QRL_ScopeWindow
 */
 
+#include <QMessageBox>
+#include <QFileDialog>
 #include "log_window.h"
 #include <stdlib.h>
 
@@ -89,7 +91,7 @@ LogViewType = QRL_LogWindow::MATRIXVIEW;
      this->setLayout(new QVBoxLayout);
         this->layout()->addWidget(matrixPlot);
 #endif
-    this->setWindowTitle(QApplication::translate("QRL_LogWindow", Log->getName(), 0, QApplication::UnicodeUTF8));
+    this->setWindowTitle(QApplication::translate("QRL_LogWindow", Log->getName(), 0));
 //     minScale=0;
 //     maxScale=1;
 //       pixelSize=24;

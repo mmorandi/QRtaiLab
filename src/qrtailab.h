@@ -266,14 +266,14 @@ struct Batch_Parameters_Struct
 
 struct Preferences_Struct
 {
-	char *Target_IP;
-	char *Target_Interface_Task_Name;
-	char *Target_Scope_Mbx_ID;
-	char *Target_Log_Mbx_ID;
-	char *Target_ALog_Mbx_ID;
-	char *Target_Led_Mbx_ID;
-	char *Target_Meter_Mbx_ID;
-	char *Target_Synch_Mbx_ID;
+	const char *Target_IP;
+	const char *Target_Interface_Task_Name;
+	const char *Target_Scope_Mbx_ID;
+	const char *Target_Log_Mbx_ID;
+	const char *Target_ALog_Mbx_ID;
+	const char *Target_Led_Mbx_ID;
+	const char *Target_Meter_Mbx_ID;
+	const char *Target_Synch_Mbx_ID;
 	int MW_w, MW_h, MW_x, MW_y;
 	char *Current_Profile;
 	int Num_Profiles;

@@ -65,7 +65,7 @@ QRL_ScopeWindow::QRL_ScopeWindow(QWidget *parent,QPL_ScopeData *scope,int ind)
        this->setLayout(new QVBoxLayout);
     this->layout()->addWidget(qwtscope);
 #endif
-    this->setWindowTitle(QApplication::translate("QRL_ScopeWindow", scope->getName().toLocal8Bit().data(), 0, QApplication::UnicodeUTF8));
+    this->setWindowTitle(QApplication::translate("QRL_ScopeWindow", scope->getName().toLocal8Bit().data(), 0));
 
     // Disable polygon clipping
    // QwtPainter::setDeviceClipping(false);

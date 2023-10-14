@@ -26,6 +26,7 @@
    file for the class QRL_MeterWindow
 */
 
+#include <QVBoxLayout>
 #include "meter_window.h"
 #include <stdlib.h>
 
@@ -62,16 +63,20 @@ RefreshRate=20;
     Thermo = new QPL_ThermoQwt(this);
     Thermo->setObjectName(QString::fromUtf8("Thermo"));
     Thermo->setGeometry(QRect(50, 20, 52, 261));
-    Thermo->setRange(Min,Max);
+    //Thermo->setRange(Min,Max);
+    Thermo->setLowerBound(Min);
+    Thermo->setUpperBound(Max);
   //  Thermo->setScale(Min,Max);
     Thermo->setPipeWidth(14);
-     Thermo->setAutoScale();
+     //Thermo->setAutoScale();
 
 
         Dial = new QPL_DialQwt(this);
         //Dial->setObjectName(QString::fromUtf8("Dial"));
    	Dial->setGeometry(QRect(50, 20, 52, 50));
-        Dial->setRange(Min,Max);
+        //Dial->setRange(Min,Max);
+        Dial->setLowerBound(Min);
+        Dial->setUpperBound(Max);
 
 /*	Dial = new QMeter(this);
 	Dial->setStartAngle(230);
@@ -208,8 +213,8 @@ void QRL_MeterWindow::changeRefreshRate(double rr)
 void QRL_MeterWindow::setMax(double max)
 {
         Max=max;
-        Thermo->setMaxValue(max);
-        Dial->setMax(max);
+        Thermo->setUpperBound(max);
+        Dial->setUpperBound(max);
         //pipeDistance=Thermo->minimumSizeHint().width()-Thermo->pipeWidth()-Thermo->borderWidth()*2;
         //setPipeWith(pipeWidth);
         //Dial->setRange(Min,Max);
@@ -234,10 +239,10 @@ void QRL_MeterWindow::setMin(double min)
 {
 
         Min=min;
-        Thermo->setMinValue(min);
+        Thermo->setLowerBound(min);
         //pipeDistance=Thermo->minimumSizeHint().width()-Thermo->pipeWidth()-Thermo->borderWidth()*2;
         //setPipeWith(pipeWidth);
-        Dial->setMin(min);
+        Dial->setLowerBound(min);
         //Dial->setRange(Min,Max);
 }
 

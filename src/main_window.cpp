@@ -106,7 +106,7 @@ QRL_MainWindow::QRL_MainWindow(int v)
               //view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
              // view->setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
               view->setViewportUpdateMode(QGraphicsView::MinimalViewportUpdate);
-              view->setOptimizationFlag(QGraphicsView::DontClipPainter,true);
+              //view->setOptimizationFlag(QGraphicsView::OptimizationFlag::DontClipPainter,true);
              // view->setOptimizationFlag(QGraphicsView::DontSavePainterState,true);
               view->setOptimizationFlag(QGraphicsView::DontAdjustForAntialiasing,true);
               //view->setViewportUpdateMode(QGraphicsView::NoViewportUpdate);
@@ -814,22 +814,22 @@ Preferences_T Preferences=qTargetInterface->getPreferences();
             if (LogsManager)
                 LogsManager->stopRefresh();
 
-                disconnectDialog();
-		enableActionStop(false);
-		TargetsManager->setTargetIsRunning(false);
-		if (qTargetInterface->getIsTargetConnected()==0){
-			enableActionDisconnect(false);
-			enableActionConnect(true);
-			enableActionLoadProfile(true);
-			enableActionSaveProfile(false);
-			enableActionStart(false);
-			enableActionShowScope(false);
-        		enableActionShowMeter(false); 
-        		enableActionShowLed(false); 
-			enableActionShowLog(false); 
-        		enableActionShowParameter(false);
-			TargetsManager->setTargetIsConnected(false);
-		}
+            disconnectDialog();
+	    enableActionStop(false);
+	    TargetsManager->setTargetIsRunning(false);
+	    if (qTargetInterface->getIsTargetConnected()==0){
+	    	    enableActionDisconnect(false);
+	    	    enableActionConnect(true);
+	    	    enableActionLoadProfile(true);
+	    	    enableActionSaveProfile(false);
+	    	    enableActionStart(false);
+	    	    enableActionShowScope(false);
+            	    enableActionShowMeter(false); 
+            	    enableActionShowLed(false); 
+	    	    enableActionShowLog(false); 
+            	    enableActionShowParameter(false);
+	    	    TargetsManager->setTargetIsConnected(false);
+	    }
 	}
 
 	//close();

@@ -19,6 +19,11 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include <QDialog>
+#include <QColorDialog>
+#include <QGraphicsSceneMouseEvent>
+#include <QGraphicsSceneWheelEvent>
+#include <QGraphicsProxyWidget>
 #include "graphic_scene.h"
 
 
@@ -72,7 +77,7 @@ QRL_OpenGLScene::QRL_OpenGLScene(QGraphicsView* v)
 
   void QRL_OpenGLScene::addDialog(QDialog * newDialog){
 
-QGraphicsProxyWidget *proxy = new QGraphicsProxyWidget(0, Qt::Dialog);
+QGraphicsProxyWidget *proxy = new QGraphicsProxyWidget();
   proxy->setWidget(newDialog);
   addItem(proxy);
 
@@ -86,7 +91,7 @@ QGraphicsProxyWidget *proxy = new QGraphicsProxyWidget(0, Qt::Dialog);
 //        item->setPos(pos.x() - rect.x(), pos.y() - rect.y());
 //        pos += QPointF(0, 10 + rect.height());
     }
-    m_time.start();
+    m_time.setHMS(0, 0, 0, 0);
 
 
   }

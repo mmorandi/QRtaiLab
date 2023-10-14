@@ -283,8 +283,9 @@ BlackWhiteDelegate::BlackWhiteDelegate(QObject *parent)
 
  void MatrixModel::setData(const QVector< QVector<float> > &v)
  {
+     beginResetModel();
      matrixData = v;
-     reset();
+     endResetModel();
  }
 
  int MatrixModel::rowCount(const QModelIndex & /* parent */) const

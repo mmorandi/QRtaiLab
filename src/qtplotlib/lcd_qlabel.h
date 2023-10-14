@@ -24,6 +24,7 @@
 
 #include "qtplot_global.h"
 #include <QtGui>
+#include <QLabel>
 
 class  QPL_LcdQLabel : public QLabel
 {

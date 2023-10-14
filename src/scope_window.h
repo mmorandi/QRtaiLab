@@ -28,6 +28,8 @@
 #define _SCOPE_WINDOW_H 1
 
 #include <QtGui> 
+#include <QDialog>
+#include <QtWidgets>
 
 #include <qwt_plot.h>
 #include <qwt_painter.h>

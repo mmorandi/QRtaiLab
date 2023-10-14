@@ -117,7 +117,8 @@ QPL_XYPlotTrace::~QPL_XYPlotTrace(){
         d_x[i] =xOffset+.5;     // time axis
         d_y[i] = yOffset;
     }
-        cData->setRawData(d_x, d_y, NDataSoll);
+        //cData->setRawData(d_x, d_y, NDataSoll);
+        cData->setRawSamples(d_x, d_y, NDataSoll);
 }
 
    void QPL_XYPlotTrace::show(bool v){
@@ -125,7 +126,7 @@ QPL_XYPlotTrace::~QPL_XYPlotTrace(){
         visible=v;
         if (!visible) {
                 cData->setStyle(QwtPlotCurve::NoCurve);
-                sym.setStyle(QwtSymbol::NoSymbol); cData->setSymbol(sym);
+                sym->setStyle(QwtSymbol::NoSymbol); cData->setSymbol(sym);
 
         }else{
                 cData->setStyle(oldStyle);

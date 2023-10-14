@@ -28,6 +28,8 @@
    file for the classes TargetThread
 */
 
+#include <iostream>
+
 #include "target_thread.h"
 #include "qrtailab_listener.h"
 //#include "scope_window.h"
@@ -171,13 +173,12 @@ void TargetThread::upload_parameters_info(long port, RT_TASK *task)
 {
 	unsigned int req = 'g';
 	char c_req = 'i';
-	int n;
 
 	RT_rpc(Target_Node, port, task, req, &Is_Target_Running);
 	if (Verbose) {
 		printf("Upload parameters...\n");
 	}
-	for (n = 0; n < Num_Tunable_Parameters; n++) {
+	for (unsigned int n = 0; n < Num_Tunable_Parameters; n++) {
 		RT_rpcx(Target_Node, port, task, &c_req, &Tunable_Parameters[n], sizeof(char), sizeof(Target_Parameters_T));
 	}
 }
@@ -189,7 +190,7 @@ void TargetThread::printBlocksInfo(){
 
                                 printf("Target is running...%s\n", Is_Target_Running ? "yes" : "no");
                                         printf("Number of target tunable parameters...%d\n", Num_Tunable_Parameters);
-                                        for (int n = 0; n < Num_Tunable_Parameters; n++) {
+                                        for (unsigned int n = 0; n < Num_Tunable_Parameters; n++) {
                                                 printf("Block: %s\n", Tunable_Parameters[n].block_name);
                                                 printf(" Parameter: %s\n", Tunable_Parameters[n].param_name);
                                                 printf(" Number of rows: %d\n", Tunable_Parameters[n].n_rows);
@@ -212,10 +213,12 @@ void TargetThread::printBlocksInfo(){
                                                 }
                                                 printf(" Sampling time...%f\n", Scopes[n]->getDt());
                                                 if (Scopes[n]->getDt() <= 0.) {
-                                                        printf("Fatal Error, Scope %s sampling time is equal to %f,\n", Scopes[n]->getName(),Scopes[n]->getDt());
-                                                        printf("while Rtai-lab needs a finite, positive sampling time\n");
-                                                        printf("This error often occurs when the sampling time is inherited\n");
-                                                        printf("from so-called time-continous simulink blocks\n");
+                                                        std::cerr << "Fatal Error, Scope "
+							<< qPrintable(Scopes[n]->getName()) << "sampling time is equal to " 
+							<< Scopes[n]->getDt() << std::endl;;
+                                                        std::cerr << "while Rtai-lab needs a finite, positive sampling time\n";
+                                                        std::cerr << "This error often occurs when the sampling time is inherited\n";
+                                                        std::cerr << "from so-called time-continous simulink blocks\n";
                                                         //abort_connection(Target_Port);
                                                         rt_release_port(Target_Node, Target_Port);
                                                         exit(1);
@@ -806,7 +809,7 @@ void TargetThread::run()
 					rt_release_port(Target_Node, Target_Port);
 					Target_Node = 0;
 					Target_Port = 0;	
-				if (Num_Tunable_Blocks>0)
+				if (Num_Tunable_Blocks>0) {
 					delete[] Tunable_Blocks;
 
 					//statusBarMessage(tr("Ready..."));
@@ -815,7 +818,9 @@ void TargetThread::run()
 					}
 				}
 				qrl::RT_RETURN(task, STOP_TARGET);
+				}
 				break;
+			 
 
 			
 			case UPDATE_PARAM: {
@@ -884,11 +889,10 @@ void TargetThread::run()
 				
 			default:
 				break;
-		}
 
 	}
 	rt_task_delete(Target_Interface_Task);
-
+}
 }
 
 void TargetThread::setPreferences(Preferences_T preferences)
